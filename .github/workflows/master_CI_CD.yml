@@ -1,11 +1,11 @@
-name: CI Angular app through GitHub Actions
+name: master_CI_CD
 on: 
   push:
     branches: [ "master"]
   pull_request:
     branches: [ "master"]
 jobs:
-  build:
+  master_CI_CD:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
