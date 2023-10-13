@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
 import { MediaComponent } from './media/media.component';
+import { StddevComponent } from './stddev/stddev.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MediaComponent
+    MediaComponent,
+    StddevComponent
   ],
   imports: [
     BrowserModule,
