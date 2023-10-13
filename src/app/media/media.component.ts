@@ -13,12 +13,16 @@ export class MediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.mediaService.getDevHours().subscribe(data => {
-      this.devHoursAverage = this.mediaService.calculateAverage(data);
+      this.devHoursAverage = this.calcularMedia(data);
     });
 
     this.mediaService.getProxySize().subscribe(data => {
-      this.proxySizeAverage = this.mediaService.calculateAverage(data);
+      this.proxySizeAverage = this.calcularMedia(data);
     });
+  }
+
+  private calcularMedia(data: number[]): number {
+    return data.reduce((acc, val) => acc + val, 0) / data.length;
   }
 }
 
