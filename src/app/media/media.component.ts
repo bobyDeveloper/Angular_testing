@@ -21,8 +21,13 @@ export class MediaComponent implements OnInit {
     });
   }
 
-  private calcularMedia(data: number[]): number {
+  calcularMedia(data: number[]): number {
     return data.reduce((acc, val) => acc + val, 0) / data.length;
   }
 }
+
+export function calcularMedia(data: number[]): number {
+    return data.reduce((acc, val) => acc + val, 0) / data.length;
+}
+
 
