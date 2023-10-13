@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StddevService } from '../services/stddev.service';
 import { calcularMedia } from '../media/media.component'; // Importar la función calcularMedia
 
+
 @Component({
   selector: 'app-stddev',
   template: ''
