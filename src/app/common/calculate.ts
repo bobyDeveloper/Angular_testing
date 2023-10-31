@@ -1,6 +1,7 @@
 import { calcularMedia } from '../media/media.component'; // Importar la función calcularMedia
+import { ComponenteSimpson } from '../simpson/simpson.component';
 
-export class Calculate {
+export class Calculate extends ComponenteSimpson {
 
   sumX(lista: number[]): number {
       var sum = 0;
@@ -48,17 +49,16 @@ export class Calculate {
       return b0;
   }
 
-    calculateY(b0: number, b1: number, x: number): number {
-        var y = 0;
+  calculateY(b0: number, b1: number, x: number): number {
+      var y = 0;
 
-        y = b0 + (b1 * x);
+      y = b0 + (b1 * x);
 
-        return y;
-    }
-
-// Reutilizamos el calculo de la media anteriormente definido en media.component.ts
-
-    calculateMedia(lista: number[]): number {
-      return calcularMedia(lista);    }
-
+      return y;
   }
+
+  // Reutilizamos el cálculo de la media anteriormente definido en media.component.ts
+  calculateMedia(lista: number[]): number {
+      return calcularMedia(lista);
+  }
+}
