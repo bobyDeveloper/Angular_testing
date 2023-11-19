@@ -10,10 +10,12 @@ import { LinearRegressionService } from '../services/linear-regression.service';
 
 export class CorrelationComponent {
   constructor(private service: LinearRegressionService) {}
+
   dataTest = {
     x: [],
     y: [],
   };
+  
   sumaXY = 0;
   sumaX = 0;
   sumaY = 0;
@@ -21,14 +23,10 @@ export class CorrelationComponent {
   sumaYCuadrada = 0;
   n = 0;
 
-//Calculo de los datos
-
   calculate = new Calculate();
+
   calculos() {
-    if (
-      this.dataTest.x.length == this.dataTest.y.length &&
-      this.dataTest.x.length != 0
-    ) {
+    if (this.dataTest.x.length === this.dataTest.y.length && this.dataTest.x.length !== 0) {
       this.n = this.dataTest.x.length;
       this.sumaX = this.calculate.sumX(this.dataTest.x);
       this.sumaY = this.calculate.sumX(this.dataTest.y);
@@ -38,51 +36,32 @@ export class CorrelationComponent {
     }
   }
 
-//Obtener los datos de la API
-
   getData(option: number) {
-    switch (option) {
-      case 1:
-        this.service.getData1().subscribe((data) => {
-          this.dataTest.x = data.proxy_size;
-          this.dataTest.y = data.actual_add;
-        });
-        break;
-      case 2:
-        this.service.getData2().subscribe((data) => {
-          this.dataTest.x = data.proxy_size;
-          this.dataTest.y = data.actual_develop;
-        });
-        break;
-      case 3:
-        this.service.getData3().subscribe((data) => {
-          this.dataTest.x = data.plan_added;
-          this.dataTest.y = data.actual_added;
-        });
-        break;
-      case 4:
-        this.service.getData4().subscribe((data) => {
-          this.dataTest.x = data.plan_added;
-          this.dataTest.y = data.actual_develop;
-        });
-        break;
-    }
+    this.service.getData(option).subscribe((data) => {
+      if (option === 1 || option === 2) {
+        this.dataTest.x = data.proxy_size;
+      } else {
+        this.dataTest.x = data.plan_added;
+      }
+
+      if (option === 1 || option === 3) {
+        this.dataTest.y = data.actual_added;
+      } else {
+        this.dataTest.y = data.actual_develop;
+      }
+      
+      this.calculos();
+    });
   }
 
-//Calculo de la correlacion
-
-//Calculo de R
   calcularR(): number {
-    let r =
-      (this.n * this.sumaXY - this.sumaX * this.sumaY) /
-      Math.sqrt(
-        (this.n * this.sumaXCuadrada - Math.pow(this.sumaX, 2)) *
-          (this.n * this.sumaYCuadrada - Math.pow(this.sumaY, 2))
-      );
+    let r = (this.n * this.sumaXY - this.sumaX * this.sumaY) /
+            Math.sqrt(
+              (this.n * this.sumaXCuadrada - Math.pow(this.sumaX, 2)) *
+              (this.n * this.sumaYCuadrada - Math.pow(this.sumaY, 2))
+            );
     return r;
   }
-
-//Calculo de R^2
 
   calcularRCuadrada(): number {
     let r = this.calcularR();

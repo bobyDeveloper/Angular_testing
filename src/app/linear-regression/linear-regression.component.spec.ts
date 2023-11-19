@@ -42,85 +42,97 @@ describe('LinearRegressionComponent', () => {
   };
 
   it('Should return B0=-22.55 with the dataset Data_Test1', () => {
-    spyOn(service, 'getData1').and.returnValue(of(test1Data));
+    spyOn(service, 'getData').withArgs(1).and.returnValue(of(test1Data));
     component.cargarDatos(1);
+    fixture.detectChanges();
     const result = component.calculateB0();
     expect(result).toBeCloseTo(-22.5525, 4);
   });
 
   it('Should return B1=1.7279 with the dataset Data_Test1', () => {
-    spyOn(service, 'getData1').and.returnValue(of(test1Data));
+    spyOn(service, 'getData').withArgs(1).and.returnValue(of(test1Data));
     component.cargarDatos(1);
+    fixture.detectChanges();
     const result = component.calculateB1();
     expect(result).toBeCloseTo(1.7279, 4);
   });
 
   it('Should return yk=644.429 with the dataset Data_Test1 if x=386', () => {
-    spyOn(service, 'getData1').and.returnValue(of(test1Data));
+    spyOn(service, 'getData').withArgs(1).and.returnValue(of(test1Data));
     component.cargarDatos(1);
+    fixture.detectChanges();
     const result = component.calculateY(386);
     expect(result).toBeCloseTo(644.429, 3);
   });
 
   it('Should return B0=-4.039 with the dataset Data_Test2', () => {
-    spyOn(service, 'getData2').and.returnValue(of(test2Data));
+    spyOn(service, 'getData').withArgs(2).and.returnValue(of(test2Data));
     component.actualizarDatos(2);
+    fixture.detectChanges();
     const result = component.calculateB0();
     expect(result).toBeCloseTo(-4.039, 3);
   });
 
   it('Should return B1=0.1681 with the dataset Data_Test2', () => {
-    spyOn(service, 'getData2').and.returnValue(of(test2Data));
+    spyOn(service, 'getData').withArgs(2).and.returnValue(of(test2Data));
     component.actualizarDatos(2);
+    fixture.detectChanges();
     const result = component.calculateB1();
     expect(result).toBeCloseTo(0.1681, 4);
   });
 
   it('Should return yk=60.858 with the dataset Data_Test2 if x=386', () => {
-    spyOn(service, 'getData2').and.returnValue(of(test2Data));
+    spyOn(service, 'getData').withArgs(2).and.returnValue(of(test2Data));
     component.actualizarDatos(2);
+    fixture.detectChanges();
     const result = component.calculateY(386);
     expect(result).toBeCloseTo(60.858, 3);
   });
 
   it('Should return B0=-23.92 with the dataset Data_Test3', () => {
-    spyOn(service, 'getData3').and.returnValue(of(test3Data));
+    spyOn(service, 'getData').withArgs(3).and.returnValue(of(test3Data));
     component.actualizarDatos(3);
+    fixture.detectChanges();
     const result = component.calculateB0();
     expect(result).toBeCloseTo(-23.92, 2);
   });
 
   it('Should return B1=1.43097 with the dataset Data_Test3', () => {
-    spyOn(service, 'getData3').and.returnValue(of(test3Data));
+    spyOn(service, 'getData').withArgs(3).and.returnValue(of(test3Data));
     component.actualizarDatos(3);
+    fixture.detectChanges();
     const result = component.calculateB1();
     expect(result).toBeCloseTo(1.43097, 5);
   });
 
   it('Should return yk=528.4294 with the dataset Data_Test3 if x=386', () => {
-    spyOn(service, 'getData3').and.returnValue(of(test3Data));
+    spyOn(service, 'getData').withArgs(3).and.returnValue(of(test3Data));
     component.actualizarDatos(3);
+    fixture.detectChanges();
     const result = component.calculateY(386);
     expect(result).toBeCloseTo(528.4294, 4);
   });
 
   it('Should return B0=-4.604 with the dataset Data_Test4', () => {
-    spyOn(service, 'getData4').and.returnValue(of(test4Data));
+    spyOn(service, 'getData').withArgs(4).and.returnValue(of(test4Data));
     component.actualizarDatos(4);
+    fixture.detectChanges();
     const result = component.calculateB0();
     expect(result).toBeCloseTo(-4.604, 3);
   });
 
   it('Should return B1=0.140164 with the dataset Data_Test4', () => {
-    spyOn(service, 'getData4').and.returnValue(of(test4Data));
+    spyOn(service, 'getData').withArgs(4).and.returnValue(of(test4Data));
     component.actualizarDatos(4);
+    fixture.detectChanges();
     const result = component.calculateB1();
     expect(result).toBeCloseTo(0.140164, 6);
   });
 
   it('Should return yk=49.4994 with the dataset Data_Test4 if x=386', () => {
-    spyOn(service, 'getData4').and.returnValue(of(test4Data));
+    spyOn(service, 'getData').withArgs(4).and.returnValue(of(test4Data));
     component.actualizarDatos(4);
+    fixture.detectChanges();
     const result = component.calculateY(386);
     expect(result).toBeCloseTo(49.4994, 4);
   });
