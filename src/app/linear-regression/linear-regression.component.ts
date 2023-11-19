@@ -16,7 +16,7 @@ export class LinearRegressionComponent implements OnInit {
 
   sumX = 0;
   sumY = 0;
-  mediaX = 0
+  mediaX = 0;
   mediaY = 0;
   sumXY = 0;
   sumXX = 0;
@@ -30,40 +30,24 @@ export class LinearRegressionComponent implements OnInit {
   }
 
   cargarDatos(routeNumber: number): void {
-    switch (routeNumber) {
-      case 1:
-        this.linearRegressionService.getData1().subscribe((data) => {
-          this.list1 = data.proxy_size;
-          this.list2 = data.actual_added;
-          this.procesarRespuesta(data);
-        });
-        break;
-      case 2:
-        this.linearRegressionService.getData2().subscribe((data) => {
-          this.list1 = data.proxy_size;
-          this.list2 = data.actual_develop;
-          this.procesarRespuesta(data);
-        });
-        break;
-      case 3:
-        this.linearRegressionService.getData3().subscribe((data) => {
-          this.list1 = data.plan_added;
-          this.list2 = data.actual_added;
-          this.procesarRespuesta(data);
-        });
-        break;
-      case 4:
-        this.linearRegressionService.getData4().subscribe((data) => {
-          this.list1 = data.plan_added;
-          this.list2 = data.actual_develop;
-          this.procesarRespuesta(data);
-        });
-        break;
-      default:
-        console.error('Número de ruta no válido');
-    }
+    this.linearRegressionService.getData(routeNumber).subscribe(data => {
+      if (routeNumber === 1 || routeNumber === 2) {
+        this.list1 = data.proxy_size;
+      } else {
+        this.list1 = data.plan_added;
+      }
+
+      if (routeNumber === 1 || routeNumber === 3) {
+        this.list2 = data.actual_added;
+      } else {
+        this.list2 = data.actual_develop;
+      }
+
+      this.procesarRespuesta();
+    });
   }
-  procesarRespuesta(data: any): void {
+
+  procesarRespuesta(): void {
     this.sumX = this.calculate.sumX(this.list1);
     this.sumY = this.calculate.sumX(this.list2);
     this.mediaX = this.calculate.calculateMedia(this.list1);
@@ -80,20 +64,14 @@ export class LinearRegressionComponent implements OnInit {
   }
 
   calculateB1(): number {
-    var b1 = 0;
-    b1 = this.calculate.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
-    return b1;
+    return this.calculate.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
   }
 
   calculateB0(): number {
-    var b0 = 0;
-    b0 = this.calculate.calculateB0(this.sumX, this.sumY, this.calculateB1(), this.n);
-    return b0;
+    return this.calculate.calculateB0(this.sumX, this.sumY, this.calculateB1(), this.n);
   }
 
   calculateY(x: number): number {
-    var y = 0;
-    y = this.calculate.calculateY(this.calculateB0(), this.calculateB1(), x);
-    return y;
+    return this.calculate.calculateY(this.calculateB0(), this.calculateB1(), x);
   }
 }

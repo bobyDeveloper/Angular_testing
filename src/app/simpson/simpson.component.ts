@@ -51,8 +51,4 @@ export class ComponenteSimpson {
     const denominator = Math.sqrt(dof * Math.PI) * this.gamma(dof / 2);
     return (numerator / denominator) * (1 / (1 + t * t / dof) ** ((dof + 1) / 2));
   }
-
-  tProbability(x: number, dof: number, numSegmentos: number = 100): number {
-    return this.integrar((t) => this.tDistribution(t, dof), 0, x, numSegmentos);
-  }
 }
