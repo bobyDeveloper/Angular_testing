@@ -1,0 +1,21 @@
+/* app.component.css */
+.menu-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+  }
+  
+  .menu-button {
+    display: block;
+    width: 200px; /* o el ancho que prefieras */
+    padding: 10px;
+    margin: 10px auto; /* Centra el botón horizontalmente y añade espacio vertical */
+    font-size: 16px; /* o el tamaño de fuente que prefieras */
+    cursor: pointer;
+  }
+  
+  /* Estilos adicionales según necesites */
+  

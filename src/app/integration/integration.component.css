@@ -1,0 +1,17 @@
+/* CSS */
+.menu {
+    width: 50%; /* Reduce el ancho del contenedor de los botones a la mitad */
+    margin: auto; /* Centra el contenedor de los botones en la página */
+}
+
+.menu button {
+    display: block; /* Hace que los botones se muestren en vertical */
+    width: 100%; /* Hace que los botones ocupen todo el ancho disponible */
+    padding: 20px; /* Aumenta el tamaño de los botones */
+    margin-bottom: 80px; /* Aumenta el espacio entre los botones */
+}
+
+.title {
+    text-align: center; /* Centra el texto del título */
+    margin-bottom: 80px; /* Añade espacio entre el título y los botones */
+}
