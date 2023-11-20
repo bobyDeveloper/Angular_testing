@@ -1,4 +1,3 @@
-/* CSS */
 .menu {
     width: 50%; /* Reduce el ancho del contenedor de los botones a la mitad */
     margin: auto; /* Centra el contenedor de los botones en la página */
@@ -14,4 +13,44 @@
 .title {
     text-align: center; /* Centra el texto del título */
     margin-bottom: 80px; /* Añade espacio entre el título y los botones */
+}
+
+/* CSS */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100vh; /* Asegura que el contenedor ocupa toda la altura de la ventana */
+    margin: 0; /* Elimina los márgenes predeterminados */
+}
+
+h1 {
+    text-align: center; /* Centra el texto del título */
+    margin-bottom: 20px; /* Añade espacio debajo del título */
+}
+
+.calculation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%; /* Ajusta el ancho del contenedor */
+}
+
+.calculation-container > div {
+    display: flex;
+    justify-content: space-evenly; /* Distribuye el espacio de manera uniforme entre los elementos */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 15px; /* Ajusta el espacio entre las filas */
+}
+
+.calculation-container > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos en su contenedor */
+}
+
+/* CSS */
+input {
+    margin: 10px; /* Añade un margen a los lados de los inputs */
 }

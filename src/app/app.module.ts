@@ -8,6 +8,7 @@ import { LinearRegressionComponent } from './linear-regression/linear-regression
 import { CorrelationComponent } from './correlation/correlation.component';
 import { ComponenteSimpson } from './simpson/simpson.component';
 import { IntegrationComponent } from './integration/integration.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { IntegrationComponent } from './integration/integration.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientTestingModule
+    HttpClientTestingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
