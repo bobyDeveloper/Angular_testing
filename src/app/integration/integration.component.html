@@ -7,32 +7,28 @@
     <button class="menu-button" (click)="setActiveCalculation('5a')">Calculate 5a</button>
   </div>
     
-  <div *ngIf="activeCalculation === '5a'" class="calculation-container">
-    <h1>Simpson and T calculate</h1>
-    
-    <!-- Formulario para el cálculo de Simpson -->
-    <div>
-        <div>
-            <input type="text" [(ngModel)]="fx" placeholder="Ingresa f(x)">
-            <input type="text" [(ngModel)]="x0" placeholder="x0">
-            <input type="text" [(ngModel)]="x1" placeholder="x1">
-            <input type="text" [(ngModel)]="numSegmentos" placeholder="Número de segmentos">
-            <input type="text" [(ngModel)]="margenError" placeholder="Margen de error">
-        </div>
-        <button (click)="calcularSimpson()">Calcular Simpson</button>
-        <textarea [(ngModel)]="resultadoSimpson" placeholder="Resultado:"></textarea>
-    </div>
-    
-    <!-- Formulario para el cálculo de T -->
-    <div>
-        <div>
-            <input type="text" [(ngModel)]="dof" placeholder="dof">
-        </div>
-        <button (click)="calcularT()">Calcular T</button>
-        <textarea [(ngModel)]="resultadoT" placeholder="Resultado de t:"></textarea>
-    </div>
-  
-    <!-- Botón para volver al menú principal -->
-    <button class="menu-button" (click)="setActiveCalculation(null)">Volver al Menú</button>
-</div> 
+ <div *ngIf="activeCalculation === '5a'" class="calculation-container">
+  <h1>Simpson and T calculate</h1>
+
+  <!-- Formulario para el cálculo de Simpson -->
+  <div>
+    <input type="text" [(ngModel)]="fx" placeholder="Ingresa f(x)">
+    <input type="number" [(ngModel)]="x0" placeholder="x0">
+    <input type="number" [(ngModel)]="x1" placeholder="x1">
+    <input type="number" [(ngModel)]="numSegmentos" placeholder="Número de segmentos">
+    <input type="number" [(ngModel)]="margenError" placeholder="Margen de error">
+    <button (click)="calcularSimpson()">Calcular Simpson</button>
+    <textarea [(ngModel)]="resultadoSimpson" placeholder="Resultado:"></textarea>
+  </div>
+
+  <!-- Formulario para el cálculo de T -->
+  <div>
+    <input type="number" [(ngModel)]="dof" placeholder="dof">
+    <button (click)="calcularT()">Calcular T</button>
+    <textarea [(ngModel)]="resultadoT" placeholder="Resultado de t:"></textarea>
+  </div>
+
+  <!-- Botón para volver al menú principal -->
+  <button class="menu-button" (click)="setActiveCalculation(null)">Volver al Menú</button>
+</div>
 </div>
