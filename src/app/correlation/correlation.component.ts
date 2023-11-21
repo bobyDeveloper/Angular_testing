@@ -28,11 +28,11 @@ export class CorrelationComponent {
   calculos() {
     if (this.dataTest.x.length === this.dataTest.y.length && this.dataTest.x.length !== 0) {
       this.n = this.dataTest.x.length;
-      this.sumaX = this.calculate.sumX(this.dataTest.x);
-      this.sumaY = this.calculate.sumX(this.dataTest.y);
-      this.sumaXY = this.calculate.sumXY(this.dataTest.x, this.dataTest.y);
-      this.sumaXCuadrada = this.calculate.sumXX(this.dataTest.x);
-      this.sumaYCuadrada = this.calculate.sumXX(this.dataTest.y);
+      this.sumaX = Calculate.sumX(this.dataTest.x);
+      this.sumaY = Calculate.sumX(this.dataTest.y);
+      this.sumaXY = Calculate.sumXY(this.dataTest.x, this.dataTest.y);
+      this.sumaXCuadrada = Calculate.sumXX(this.dataTest.x);
+      this.sumaYCuadrada = Calculate.sumXX(this.dataTest.y);
     }
   }
 

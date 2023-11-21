@@ -48,14 +48,14 @@ export class LinearRegressionComponent implements OnInit {
   }
 
   procesarRespuesta(): void {
-    this.sumX = this.calculate.sumX(this.list1);
-    this.sumY = this.calculate.sumX(this.list2);
-    this.mediaX = this.calculate.calculateMedia(this.list1);
-    this.mediaY = this.calculate.calculateMedia(this.list2);
+    this.sumX = Calculate.sumX(this.list1);
+    this.sumY = Calculate.sumX(this.list2);
+    this.mediaX = Calculate.calculateMedia(this.list1);
+    this.mediaY = Calculate.calculateMedia(this.list2);
 
-    this.sumXY = this.calculate.sumXY(this.list1, this.list2);
-    this.sumXX = this.calculate.sumXX(this.list1);
-    this.sumYY = this.calculate.sumXX(this.list2);
+    this.sumXY = Calculate.sumXY(this.list1, this.list2);
+    this.sumXX = Calculate.sumXX(this.list1);
+    this.sumYY = Calculate.sumXX(this.list2);
     this.n = this.list1.length;
   }
 
@@ -64,14 +64,14 @@ export class LinearRegressionComponent implements OnInit {
   }
 
   calculateB1(): number {
-    return this.calculate.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
+    return Calculate.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
   }
 
   calculateB0(): number {
-    return this.calculate.calculateB0(this.sumX, this.sumY, this.calculateB1(), this.n);
+    return Calculate.calculateB0(this.sumX, this.sumY, this.calculateB1(), this.n);
   }
 
   calculateY(x: number): number {
-    return this.calculate.calculateY(this.calculateB0(), this.calculateB1(), x);
+    return Calculate.calculateY(this.calculateB0(), this.calculateB1(), x);
   }
 }

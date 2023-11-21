@@ -1,0 +1,86 @@
+<!-- Solo muestra el menú si no se ha seleccionado un cálculo -->
+<div class="main-container">
+<div *ngIf="activeCalculation === null" class="menu">
+    <h1 class="title">Challenge Calculations</h1>
+    <button class="menu-button" (click)="setActiveCalculation('1a')">Calculate 1a</button>
+    <button class="menu-button" (click)="setActiveCalculation('3a')">Calculate 3a</button>
+    <button class="menu-button" (click)="setActiveCalculation('5a')">Calculate 5a</button>
+  </div>
+
+  <!-- Sección de cálculo de media y desviación estándar -->
+  <div *ngIf="activeCalculation === '1a'" class="calculation-container">
+    <h1>Desviation and Mean Calculate</h1>
+    <div>
+      <input type="text" [(ngModel)]="inputArray" placeholder="Ingresa array">
+      <button (click)="calcularMediaFromArray()">Calcular media</button>
+      <textarea [(ngModel)]="mediaResult" placeholder="Media:"></textarea>
+    </div>
+    <div>
+      <button (click)="calcularDesviacion()">Calcular Desviacion</button>
+      <textarea [(ngModel)]="stdDevResult" placeholder="Desviacion Estandar:"></textarea>
+    </div>
+    <button class="menu-button" (click)="setActiveCalculation(null)">Volver al Menú</button>
+  </div>
+    
+  <div *ngIf="activeCalculation === '5a'" class="calculation-container">
+    <h1>Simpson and T calculate</h1>
+    
+    <!-- Formulario para el cálculo de Simpson -->
+    <div>
+        <div>
+            <input type="text" [(ngModel)]="fx" placeholder="Ingresa f(x)">
+            <input type="text" [(ngModel)]="x0" placeholder="x0">
+            <input type="text" [(ngModel)]="x1" placeholder="x1">
+            <input type="text" [(ngModel)]="numSegmentos" placeholder="Número de segmentos">
+            <input type="text" [(ngModel)]="margenError" placeholder="Margen de error">
+        </div>
+        <button (click)="calcularSimpson()">Calcular Simpson</button>
+        <textarea [(ngModel)]="resultadoSimpson" placeholder="Resultado:"></textarea>
+    </div>
+    
+    <!-- Formulario para el cálculo de T -->
+    <div>
+        <div>
+            <input type="text" [(ngModel)]="dof" placeholder="dof">
+        </div>
+        <button (click)="calcularT()">Calcular T</button>
+        <textarea [(ngModel)]="resultadoT" placeholder="Resultado de t:"></textarea>
+    </div>
+  
+    <!-- Botón para volver al menú principal -->
+    <button class="menu-button" (click)="setActiveCalculation(null)">Volver al Menú</button>
+</div> 
+
+<!-- Sección de cálculo de regresión y correlación -->
+<div *ngIf="activeCalculation === '3a'" class="calculation-container">
+    <h1>Regression and Correlation Calculation</h1>
+    
+    <!-- Formulario para el cálculo de regresión -->
+    <div class="calculation-group">
+        <div class="input-group">
+          <input type="text" [(ngModel)]="inputArrayX" placeholder="Ingresa valores de X separados por comas">
+          <input type="text" [(ngModel)]="inputArrayY" placeholder="Ingresa valores de Y separados por comas">
+          <input type="number" [(ngModel)]="valorPredecir" placeholder="Valor a predecir en regresión">
+        </div>
+        <div class="button-group">
+          <button (click)="calcularRegresion()">Calcular Regresión</button>
+        </div>
+        <div class="result-group">
+          <textarea *ngIf="resultadoRegresion" [(ngModel)]="resultadoRegresion.b0" placeholder="Resultado de B0"></textarea>
+          <textarea *ngIf="resultadoRegresion" [(ngModel)]="resultadoRegresion.b1" placeholder="Resultado de B1"></textarea>
+          <textarea *ngIf="resultadoRegresion" [(ngModel)]="resultadoRegresion.yk" placeholder="Resultado de YK"></textarea>
+        </div>
+      </div>
+  
+    <!-- Formulario para el cálculo de correlación -->
+    <div class="calculation-group">
+        <button (click)="calcularCorrelacion()">Calcular Correlación</button>
+        <textarea *ngIf="resultadoCorrelacion" 
+                  [(ngModel)]="resultadoCorrelacion" 
+                  placeholder="Resultado de Correlación: R^2"></textarea>
+      </div>
+  
+    <!-- Botón para volver al menú principal -->
+    <button class="menu-button" (click)="setActiveCalculation(null)">Volver al Menú</button>
+  </div>
+</div>
