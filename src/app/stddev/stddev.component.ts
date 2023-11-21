@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StddevService } from '../services/stddev.service';
-import { calcularMedia } from '../media/media.component'; // Importar la función calcularMedia
-
+import { calcularMedia } from '../media/media.component';
 
 @Component({
   selector: 'app-stddev',
@@ -19,25 +18,25 @@ export class StddevComponent implements OnInit {
   }
 
   calculateProxySizeStandardDeviation() {
-    this.stddevService.getProxySize().subscribe(data => { 
+    this.stddevService.getProxySize().subscribe(data => {
       const mean = calcularMedia(data);
-      this.proxySizeStdDev = this.calcularDesviacionEstandar(data, mean);
+      this.proxySizeStdDev = calcularDesviacionEstandar(data, mean);
     });
   }
 
   calculateDevHoursStandardDeviation() {
-    this.stddevService.getDevHours().subscribe(data => { 
+    this.stddevService.getDevHours().subscribe(data => {
       const mean = calcularMedia(data);
-      this.devHoursStdDev = this.calcularDesviacionEstandar(data, mean);
+      this.devHoursStdDev = calcularDesviacionEstandar(data, mean);
     });
   }
-
-  calcularDesviacionEstandar(data: number[], mean: number): number {
-    const squaredDifferences = data.map(val => Math.pow(val - mean, 2));
-    const meanOfSquaredDifferences = calcularMedia(squaredDifferences); // Usar la función calcularMedia
-    const stdDev = Math.sqrt(meanOfSquaredDifferences);
-    return stdDev;
-  }
 }
+
+export function calcularDesviacionEstandar(data: number[], mean: number): number {
+  const squaredDifferences = data.map(val => Math.pow(val - mean, 2));
+  const meanOfSquaredDifferences = calcularMedia(squaredDifferences);
+  return Math.sqrt(meanOfSquaredDifferences);
+}
+
 
 
