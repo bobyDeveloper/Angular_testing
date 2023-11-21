@@ -3,62 +3,31 @@ import { ComponenteSimpson } from '../simpson/simpson.component';
 
 export class Calculate extends ComponenteSimpson {
 
-  sumX(lista: number[]): number {
-      var sum = 0;
-      console.log(lista);
-      for (let i = 0; i < lista.length; i++) {
-          sum += lista[i];
+    static sumX(lista: number[]): number {
+        return lista.reduce((sum, current) => sum + current, 0);
       }
-
-      return sum;
-  }
-
-  sumXX(lista: number[]): number {
-      var sum = 0;
-
-      for (let i = 0; i < lista.length; i++) {
-          sum += lista[i] * lista[i];
+    
+      static sumXX(lista: number[]): number {
+        return lista.reduce((sum, current) => sum + current * current, 0);
       }
-
-      return sum;
-  }
-
-  sumXY(listaX: number[], listaY: number[]): number {
-      var sum = 0;
-
-      for (let i = 0; i < listaX.length; i++) {
-          sum += listaX[i] * listaY[i];
+    
+      static sumXY(listaX: number[], listaY: number[]): number {
+        return listaX.reduce((sum, current, i) => sum + current * listaY[i], 0);
       }
-
-      return sum;
-  }
-
-  calculateB1(sumXY: number, sumX: number, sumY: number, sumXX: number, n: number): number {
-      var b1 = 0;
-
-      b1 = ((n * sumXY) - (sumX * sumY)) / ((n * sumXX) - (sumX * sumX));
-
-      return b1;
-  }
-
-  calculateB0(sumX: number, sumY: number, b1: number, n: number): number {
-      var b0 = 0;
-
-      b0 = (sumY - (b1 * sumX)) / n;
-
-      return b0;
-  }
-
-  calculateY(b0: number, b1: number, x: number): number {
-      var y = 0;
-
-      y = b0 + (b1 * x);
-
-      return y;
-  }
-
-  // Reutilizamos el cálculo de la media anteriormente definido en media.component.ts
-  calculateMedia(lista: number[]): number {
-      return calcularMedia(lista);
-  }
+    
+      static calculateB1(sumXY: number, sumX: number, sumY: number, sumXX: number, n: number): number {
+        return ((n * sumXY) - (sumX * sumY)) / ((n * sumXX) - (sumX * sumX));
+      }
+    
+      static calculateB0(sumX: number, sumY: number, b1: number, n: number): number {
+        return (sumY - (b1 * sumX)) / n;
+      }
+    
+      static calculateY(b0: number, b1: number, x: number): number {
+        return b0 + (b1 * x);
+      }
+    
+      static calculateMedia(lista: number[]): number {
+        return calcularMedia(lista); // Asegúrate de que esta función sea exportable desde media.component.ts
+      }
 }

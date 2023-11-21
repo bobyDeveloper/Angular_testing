@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponenteSimpson } from '../simpson/simpson.component';
 import { calcularMedia } from '../media/media.component';
 import { calcularDesviacionEstandar } from '../stddev/stddev.component';
+import { Calculate } from '../common/calculate';
 
 @Component({
   selector: 'app-integration',
@@ -11,6 +12,11 @@ import { calcularDesviacionEstandar } from '../stddev/stddev.component';
 
 export class IntegrationComponent {
   activeCalculation: '1a' | '3a' | '5a' | null = null;
+  inputArrayX: string = '';
+  inputArrayY: string = '';
+  valorPredecir: number = 0;
+  resultadoRegresion: { b0: number, b1: number, yk: number } | null = null;
+  resultadoCorrelacion: number | null = null;
   inputArray: string = '';
   mediaResult: number | null = null;
   stdDevResult: number | null = null;
@@ -23,6 +29,7 @@ export class IntegrationComponent {
   resultadoSimpson: number | null = null;
   resultadoT: number | null = null;
   componenteSimpson = new ComponenteSimpson();
+
 
   setActiveCalculation(calculation: '1a' | '3a' | '5a' | null) {
     this.activeCalculation = calculation;
@@ -79,5 +86,49 @@ export class IntegrationComponent {
     // Por ahora, esto calcula la distribución T para t=1, ajusta según sea necesario
     const dofNumber = parseInt(this.dof);
     this.resultadoT = this.componenteSimpson.tDistribution(1, dofNumber);
+  }
+
+  calcularRegresion() {
+    const listaX = this.inputArrayX.split(',').map(Number);
+    const listaY = this.inputArrayY.split(',').map(Number);
+
+    if (listaX.length !== listaY.length || listaX.length === 0) {
+      alert('Los arrays X e Y deben tener la misma longitud y no estar vacíos.');
+      return;
+    }
+
+    const sumX = Calculate.sumX(listaX);
+    const sumY = Calculate.sumX(listaY);
+    const sumXY = Calculate.sumXY(listaX, listaY);
+    const sumXX = Calculate.sumXX(listaX);
+    const n = listaX.length;
+
+    const b1 = Calculate.calculateB1(sumXY, sumX, sumY, sumXX, n);
+    const b0 = Calculate.calculateB0(sumX, sumY, b1, n);
+    const yk = Calculate.calculateY(b0, b1, this.valorPredecir);
+
+    this.resultadoRegresion = { b0, b1, yk };
+  }
+
+  calcularCorrelacion() {
+    const listaX = this.inputArrayX.split(',').map(Number);
+    const listaY = this.inputArrayY.split(',').map(Number);
+
+    if (listaX.length !== listaY.length || listaX.length === 0) {
+      alert('Los arrays X e Y deben tener la misma longitud y no estar vacíos.');
+      return;
+    }
+
+    const sumXY = Calculate.sumXY(listaX, listaY);
+    const sumX = Calculate.sumX(listaX);
+    const sumY = Calculate.sumX(listaY);
+    const sumXX = Calculate.sumXX(listaX);
+    const sumYY = Calculate.sumXX(listaY);
+    const n = listaX.length;
+
+    const r = (n * sumXY - sumX * sumY) / Math.sqrt((n * sumXX - sumX * sumX) * (n * sumYY - sumY * sumY));
+    const rSquared = r * r;
+
+    this.resultadoCorrelacion = rSquared;
   }
 }

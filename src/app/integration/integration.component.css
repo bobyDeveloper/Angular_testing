@@ -19,7 +19,7 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh; /* Asegura que el contenedor ocupa toda la altura de la ventana */
     margin: 0; /* Elimina los márgenes predeterminados */
@@ -55,3 +55,14 @@ input {
     margin: 10px; /* Añade un margen a los lados de los inputs */
 }
 
+  .calculation-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .input-group, .button-group, .result-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
